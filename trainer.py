@@ -42,7 +42,7 @@ def start():
             elif mode is 'rest':
                 say("now rest. Next excercise will be %s" % excercises[index])
         if index > len(excercises) - 1:
-            say("Good job. You're all done. See you tomorrow.")
+            say("Good job. You are all done. See you tomorrow.")
             running = False
 
 if __name__ == '__main__':
