@@ -1,8 +1,9 @@
-from time import time
+import sys
 import subprocess
+from time import time
 
 modes = {
-    'start': 3,
+    'start': 10,
     'rest': 10,
     'work': 30,
 }
@@ -21,9 +22,17 @@ def next_mode(mode):
     return mode
 
 def say(msg):
-    cmd = "espeak -s 140 -v en '%s' --stdout|paplay" % msg
-    talk = subprocess.Popen(cmd, stdin=subprocess.PIPE, shell=True)
-    talk.wait()
+
+    cmd = None
+
+    if sys.platform.startswith('linux'):
+        cmd = "espeak -s 140 -v en '%s' --stdout|paplay" % msg
+    elif sys.platform.startswith():
+        cmd = "say %s" % msg
+
+    if cmd:
+        talk = subprocess.Popen(cmd, stdin=subprocess.PIPE, shell=True)
+
     print msg
 
 def start():
